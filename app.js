@@ -3,31 +3,38 @@
 	'use strict'
 
 	angular.module("LunchCheck", [])
-	.controller("LunchCheckController", LunchCheckController);
+		.controller("LunchCheckController", LunchCheckController);
 
-	LunchCheckController.$inject=["$scope"];
+	LunchCheckController.$inject = ["$scope"];
 
-	var LunchCheckController = function($scope){
+	function LunchCheckController($scope){
 
-		var lunchCheckController = this;
+		$scope.items = "";
+		$scope.borderColor = "";
+		$scope.fontColor = "";
 
-		lunchCheckController.items = "";
-		lunchCheckController.borderColor = "";
-		lunchCheckController.fontColor = "";
-		lunchCheckController.calculate = function(){
-			if(!items){
-				lunchCheckController.message = "Please enter data firs";
-				lunchCheckController.borderColor = "red";
-				lunchCheckController.fontColor = "red";
+		$scope.calculate = function(){
+
+			if(!$scope.items){
+
+				$scope.message = "Please enter data first";
+				$scope.borderColor = "2px solid red";
+				$scope.fontColor = "red";
+
 			}else{
-				lunchCheckController.borderColor = "green";
-				lunchCheckController.fontColor = "green";
-				itemArr = items.spilt(",");
+
+				$scope.borderColor = "2px solid green";
+				$scope.fontColor = "green";
+
+				var itemArr = $scope.items.split(",");
 
 				if(itemArr.length <= 3){
-					lunchCheckController.message = "Enjoy!";
+
+					$scope.message = "Enjoy!";
+
 				}else{
-					lunchCheckController.message = "Too much!";
+
+					$scope.message = "Too much!";
 				}
 			}
 		}
